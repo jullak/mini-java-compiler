@@ -1,0 +1,12 @@
+target_sources(compiler
+        PRIVATE
+        ${mini-java-compiler_SOURCE_DIR}/ast/statements/StatementsList.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/statements/IfStatement.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/statements/IfElseStatement.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/statements/WhileStatement.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/statements/ReturnStatement.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/statements/OutputStatement.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/statements/AssertStatement.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/statements/BraceStatement.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/statements/AssignStatement.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/statements/DeclarationStatement.cpp)

@@ -1,0 +1,11 @@
+#include "MinusExpression.hpp"
+
+MinusExpression::MinusExpression(Expression * l, Expression * r)
+  : left_(l)
+  , right_(r)
+{}
+
+MinusExpression::~MinusExpression() {
+  delete left_;
+  delete right_;
+}

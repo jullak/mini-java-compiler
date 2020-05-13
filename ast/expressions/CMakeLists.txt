@@ -1,0 +1,21 @@
+target_sources(compiler
+        PRIVATE
+        ${mini-java-compiler_SOURCE_DIR}/ast/expressions/PlusExpression.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/expressions/MinusExpression.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/expressions/StarExpression.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/expressions/SlashExpression.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/expressions/ProcExpression.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/expressions/AndExpression.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/expressions/OrExpression.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/expressions/LessExpression.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/expressions/GreatExpression.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/expressions/EqualExpression.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/expressions/ArrayExpression.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/expressions/LengthExpression.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/expressions/NewArrayExpression.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/expressions/NotExpression.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/expressions/NumberExpression.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/expressions/BoolExpression.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/expressions/IdentifierExpression.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/expressions/UnaryMinusExpression.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/expressions/ParenExpression.cpp)
