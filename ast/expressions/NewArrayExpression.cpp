@@ -9,3 +9,7 @@ NewArrayExpression::~NewArrayExpression() {
   delete type_;
   delete expression_;
 }
+
+void NewArrayExpression::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

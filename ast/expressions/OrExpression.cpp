@@ -9,3 +9,7 @@ OrExpression::~OrExpression() {
   delete left_;
   delete right_;
 }
+
+void OrExpression::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

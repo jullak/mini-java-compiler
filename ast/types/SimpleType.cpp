@@ -7,3 +7,7 @@ SimpleType::SimpleType(const std::string& type) {
     simple_type_ = BOOL;
   }
 }
+
+void SimpleType::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

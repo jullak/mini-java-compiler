@@ -5,8 +5,9 @@
 
 class NumberExpression : public Expression {
 public:
-  NumberExpression(int num);
+  explicit NumberExpression(int num);
 
-private:
+  void accept(Visitor * visitor) override;
+
   int number_;
 };

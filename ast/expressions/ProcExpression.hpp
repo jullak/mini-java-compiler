@@ -8,7 +8,8 @@ public:
   ProcExpression(Expression * l, Expression * r);
   ~ProcExpression();
 
-private:
+  void accept(Visitor * visitor) override;
+
   Expression * left_;
   Expression * right_;
 };

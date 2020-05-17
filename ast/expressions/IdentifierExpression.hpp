@@ -7,8 +7,9 @@
 
 class IdentifierExpression : public Expression {
 public:
-  IdentifierExpression(const std::string& ident);
+  explicit IdentifierExpression(const std::string & ident);
 
-private:
+  void accept(Visitor * visitor) override;
+
   std::string identifier_;
 };

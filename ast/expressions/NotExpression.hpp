@@ -5,9 +5,10 @@
 
 class NotExpression : public Expression {
 public:
-  NotExpression(Expression * l);
+  explicit NotExpression(Expression * l);
   ~NotExpression() override;
 
-private:
+  void accept(Visitor * visitor) override;
+
   Expression * left_;
 };

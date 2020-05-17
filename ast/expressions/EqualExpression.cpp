@@ -9,3 +9,7 @@ EqualExpression::~EqualExpression() {
   delete left_;
   delete right_;
 }
+
+void EqualExpression::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

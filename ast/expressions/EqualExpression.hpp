@@ -8,7 +8,8 @@ public:
   EqualExpression(Expression * l, Expression * r);
   ~EqualExpression() override;
 
-private:
+  void accept(Visitor * visitor) override;
+
   Expression * left_;
   Expression * right_;
 };

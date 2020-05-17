@@ -8,7 +8,8 @@ public:
   PlusExpression(Expression * l, Expression * r);
   ~PlusExpression() override;
 
-private:
+  void accept(Visitor * visitor) override;
+
   Expression * left_;
   Expression * right_;
 };

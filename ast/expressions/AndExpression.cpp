@@ -9,3 +9,7 @@ AndExpression::~AndExpression() {
   delete left_;
   delete right_;
 }
+
+void AndExpression::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

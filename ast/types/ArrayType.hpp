@@ -6,8 +6,10 @@
 
 class ArrayType : public Type {
 public:
-  ArrayType(SimpleType * type);
+  explicit ArrayType(SimpleType * type);
   ~ArrayType() override;
-private:
+
+  void accept(Visitor * visitor) override;
+
   SimpleType * array_type_;
 };

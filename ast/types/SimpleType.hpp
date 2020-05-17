@@ -9,7 +9,9 @@ enum Types { INT, BOOL, VOID };
 
 class SimpleType : public Type {
 public:
-  SimpleType(const std::string & type);
-private:
+  explicit SimpleType(const std::string & type);
+
+  void accept(Visitor * visitor) override;
+
   Types simple_type_;
 };

@@ -5,8 +5,9 @@
 
 class BoolExpression : public Expression {
 public:
-  BoolExpression(bool boolean);
+  explicit BoolExpression(bool boolean);
 
-private:
+  void accept(Visitor * visitor) override;
+
   bool boolean_;
 };

@@ -8,7 +8,9 @@ class WhileStatement : public Statement {
 public:
   WhileStatement(Expression * cond, Statement * statement);
   ~WhileStatement();
-private:
+
+  void accept(Visitor * visitor) override;
+
   Expression * condition_;
   Statement * statement_;
 };

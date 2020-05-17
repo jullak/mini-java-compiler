@@ -9,3 +9,7 @@ StarExpression::~StarExpression() {
   delete left_;
   delete right_;
 }
+
+void StarExpression::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

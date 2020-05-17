@@ -9,3 +9,7 @@ WhileStatement::~WhileStatement() {
   delete condition_;
   delete statement_;
 }
+
+void WhileStatement::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

@@ -7,3 +7,7 @@ DeclarationStatement::DeclarationStatement(Declaration * decl)
 DeclarationStatement::~DeclarationStatement() {
   delete declaration_;
 }
+
+void DeclarationStatement::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

@@ -7,3 +7,7 @@ AssertStatement::AssertStatement(Expression * checked)
 AssertStatement::~AssertStatement() {
   delete checked_;
 }
+
+void AssertStatement::accept(Visitor *visitor){
+  visitor->visit(this);
+}

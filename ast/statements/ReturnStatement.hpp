@@ -6,8 +6,10 @@
 
 class ReturnStatement : public Statement {
 public:
-  ReturnStatement(Expression * ret);
+  explicit ReturnStatement(Expression * ret);
   ~ReturnStatement();
-private:
+
+  void accept(Visitor * visitor) override;
+
   Expression * returned_;
 };

@@ -7,3 +7,7 @@ ArrayType::ArrayType(SimpleType * type)
 ArrayType::~ArrayType() {
   delete array_type_;
 }
+
+void ArrayType::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

@@ -9,3 +9,7 @@ PlusExpression::~PlusExpression() {
   delete left_;
   delete right_;
 }
+
+void PlusExpression::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

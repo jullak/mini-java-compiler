@@ -5,9 +5,10 @@
 
 class ParenExpression : public Expression {
 public:
-  ParenExpression(Expression * expr);
+  explicit ParenExpression(Expression * expr);
   ~ParenExpression() override;
 
-private:
+  void accept(Visitor * visitor) override;
+
   Expression * expression_;
 };

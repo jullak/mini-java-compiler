@@ -7,8 +7,10 @@
 
 class BraceStatement : public Statement {
 public:
-  BraceStatement(StatementsList * statements);
+  explicit BraceStatement(StatementsList * statements);
   ~BraceStatement();
-private:
+
+  void accept(Visitor * visitor) override;
+
   StatementsList * statements_;
 };

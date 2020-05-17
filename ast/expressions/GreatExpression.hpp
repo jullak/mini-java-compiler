@@ -8,7 +8,8 @@ public:
   GreatExpression(Expression * l, Expression * r);
   ~GreatExpression() override;
 
-private:
+  void accept(Visitor * visitor) override;
+
   Expression * left_;
   Expression * right_;
 };

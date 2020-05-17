@@ -10,6 +10,7 @@ int main(int argc, char ** argv) {
     if (argv[i] == "-p") {}
     else if (argv[i] == "-s") {}
     else if (!driver.parse(argv[i])) {
+      driver.print_ast_tree();
       std::cout << "OK?.." << std::endl;
     } else {
       result = 1;

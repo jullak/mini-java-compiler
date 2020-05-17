@@ -18,6 +18,7 @@ public:
   int parse(const std::string & file_name);
 
   void set_program(Program * program);
+  void print_ast_tree();
 private:
   Scanner scanner_;
   yy::parser parser_;

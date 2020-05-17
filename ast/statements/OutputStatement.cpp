@@ -7,3 +7,7 @@ OutputStatement::OutputStatement(Expression * information)
 OutputStatement::~OutputStatement() {
   delete information_;
 }
+
+void OutputStatement::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

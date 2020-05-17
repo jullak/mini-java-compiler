@@ -9,7 +9,8 @@ public:
   NewArrayExpression(SimpleType * type, Expression * expr);
   ~NewArrayExpression() override;
 
-private:
+  void accept(Visitor * visitor) override;
+
   SimpleType * type_;
   Expression * expression_;
 };

@@ -28,16 +28,18 @@ add_executable(compiler
         ${FLEX_scanner-with-ast_OUTPUTS}
         )
 
+add_subdirectory(${mini-java-compiler_SOURCE_DIR}/ast/expressions)
+add_subdirectory(${mini-java-compiler_SOURCE_DIR}/ast/statements)
+add_subdirectory(${mini-java-compiler_SOURCE_DIR}/ast/lvalue)
+add_subdirectory(${mini-java-compiler_SOURCE_DIR}/ast/types)
+add_subdirectory(${mini-java-compiler_SOURCE_DIR}/ast/declaration)
+add_subdirectory(${mini-java-compiler_SOURCE_DIR}/visitors)
+
 target_include_directories(compiler PUBLIC
         ${mini-java-compiler_SOURCE_DIR}/ast
         ${mini-java-compiler_SOURCE_DIR}/ast/statements
         ${mini-java-compiler_SOURCE_DIR}/ast/expressions
         ${mini-java-compiler_SOURCE_DIR}/ast/lvalue
         ${mini-java-compiler_SOURCE_DIR}/ast/types
-        ${mini-java-compiler_SOURCE_DIR}/ast/declaration)
-
-add_subdirectory(${mini-java-compiler_SOURCE_DIR}/ast/expressions)
-add_subdirectory(${mini-java-compiler_SOURCE_DIR}/ast/statements)
-add_subdirectory(${mini-java-compiler_SOURCE_DIR}/ast/lvalue)
-add_subdirectory(${mini-java-compiler_SOURCE_DIR}/ast/types)
-add_subdirectory(${mini-java-compiler_SOURCE_DIR}/ast/declaration)
+        ${mini-java-compiler_SOURCE_DIR}/ast/declaration
+        ${mini-java-compiler_SOURCE_DIR}/visitors)

@@ -7,3 +7,7 @@ LengthExpression::LengthExpression(Expression * l)
 LengthExpression::~LengthExpression() {
   delete left_;
 }
+
+void LengthExpression::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

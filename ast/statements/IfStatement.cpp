@@ -9,3 +9,7 @@ IfStatement::~IfStatement() {
   delete condition_;
   delete statement_;
 }
+
+void IfStatement::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

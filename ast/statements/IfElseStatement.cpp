@@ -11,3 +11,7 @@ IfElseStatement::~IfElseStatement() {
   delete statementIf_;
   delete statementElse_;
 }
+
+void IfElseStatement::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

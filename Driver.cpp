@@ -1,5 +1,6 @@
 #include "Driver.hh"
 #include "parser.hh"
+#include "PrintVisitor.hpp"
 
 Driver::Driver()
   : scanner_(*this)
@@ -33,3 +34,7 @@ void Driver::set_program(Program * program) {
   program_ = program;
 }
 
+void Driver::print_ast_tree() {
+  PrintVisitor printer("tree.txt");
+  program_->visit_all(&printer);
+}

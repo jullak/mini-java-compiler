@@ -9,7 +9,9 @@ class AssignStatement : public Statement {
 public:
   AssignStatement(Lvalue * lv, Expression * rv);
   ~AssignStatement();
-private:
+
+  void accept(Visitor * visitor) override;
+
   Lvalue * lvalue_;
   Expression * rvalue_;
 };

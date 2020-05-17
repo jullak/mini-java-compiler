@@ -7,3 +7,7 @@ UnaryMinusExpression::UnaryMinusExpression(Expression * expr)
 UnaryMinusExpression::~UnaryMinusExpression() {
   delete expression_;
 }
+
+void UnaryMinusExpression::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

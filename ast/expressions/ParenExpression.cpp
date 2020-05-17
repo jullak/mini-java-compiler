@@ -7,3 +7,7 @@ ParenExpression::ParenExpression(Expression * expr)
 ParenExpression::~ParenExpression() {
   delete expression_;
 }
+
+void ParenExpression::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

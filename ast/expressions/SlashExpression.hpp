@@ -8,7 +8,8 @@ public:
   SlashExpression(Expression * l, Expression * r);
   ~SlashExpression();
 
-private:
+  void accept(Visitor * visitor) override;
+
   Expression * left_;
   Expression * right_;
 };

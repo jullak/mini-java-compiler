@@ -13,102 +13,14 @@
     class Scanner;
     class Driver;
 
-    class Program;
-
-    class Expression;
-
-    class PlusExpression;
-    class MinusExpression;
-    class StarExpression;
-    class SlashExpression;
-    class ProcExpression;
-    class AndExpression;
-    class OrExpression;
-    class LessExpression;
-    class GreatExpression;
-    class EqualExpression;
-    class ArrayExpression;
-    class LengthExpression;
-    class NewArrayExpression;
-    class NotExpression;
-    class NumberExpression;
-    class BoolExpression;
-    class IdentifierExpression;
-    class UnaryMinusExpression;
-    class ParenExpression;
-
-    class Statement;
-    class StatementsList;
-    class IfStatement;
-    class IfElseStatement;
-    class WhileStatement;
-    class ReturnStatement;
-    class AssertStatement;
-    class OutputStatement;
-    class BraceStatement;
-    class AssignStatement;
-    class DeclarationStatement;
-
-    class Lvalue;
-    class IdentifierLvalue;
-    class ElementLvalue;
-
-    class Type;
-    class ArrayType;
-    class SimpleType;
-
-    class Declaration;
+    #include "ForwardDeclaration.hpp"
 }
 
 %code {
     #include "Driver.hh"
     #include "location.hh"
 
-    #include "Program.hpp"
-    #include "ast/expressions/Expression.hpp"
-
-    #include "ast/expressions/PlusExpression.hpp"
-    #include "ast/expressions/MinusExpression.hpp"
-    #include "ast/expressions/StarExpression.hpp"
-    #include "ast/expressions/SlashExpression.hpp"
-    #include "ast/expressions/ProcExpression.hpp"
-    #include "ast/expressions/AndExpression.hpp"
-    #include "ast/expressions/OrExpression.hpp"
-    #include "ast/expressions/LessExpression.hpp"
-    #include "ast/expressions/GreatExpression.hpp"
-    #include "ast/expressions/EqualExpression.hpp"
-    #include "ast/expressions/ArrayExpression.hpp"
-    #include "ast/expressions/LengthExpression.hpp"
-    #include "ast/expressions/NewArrayExpression.hpp"
-    #include "ast/expressions/NotExpression.hpp"
-    #include "ast/expressions/NumberExpression.hpp"
-    #include "ast/expressions/BoolExpression.hpp"
-    #include "ast/expressions/IdentifierExpression.hpp"
-    #include "ast/expressions/UnaryMinusExpression.hpp"
-    #include "ast/expressions/ParenExpression.hpp"
-
-
-    #include "ast/statements/Statement.hpp"
-    #include "ast/statements/StatementsList.hpp"
-    #include "ast/statements/IfStatement.hpp"
-    #include "ast/statements/IfElseStatement.hpp"
-    #include "ast/statements/WhileStatement.hpp"
-    #include "ast/statements/ReturnStatement.hpp"
-    #include "ast/statements/AssertStatement.hpp"
-    #include "ast/statements/OutputStatement.hpp"
-    #include "ast/statements/BraceStatement.hpp"
-    #include "ast/statements/AssignStatement.hpp"
-    #include "ast/statements/DeclarationStatement.hpp"
-
-    #include "ast/lvalue/Lvalue.hpp"
-    #include "ast/lvalue/IdentifierLvalue.hpp"
-    #include "ast/lvalue/ElementLvalue.hpp"
-
-    #include "ast/types/Type.hpp"
-    #include "ast/types/ArrayType.hpp"
-    #include "ast/types/SimpleType.hpp"
-
-    #include "ast/declaration/Declaration.hpp"
+    #include "Elements.hpp"
 
     static yy::parser::symbol_type yylex(Scanner &scanner, Driver& driver) {
         return scanner.scan_token();
@@ -218,7 +130,7 @@ statement:
 
 statements:
     %empty {$$ = new StatementsList(); } |
-    statements statement { $1->add_statement($2); } ;
+    statements statement { $1->add_statement($2); $$=$1; } ;
 
 %left "||";
 %left "&&";

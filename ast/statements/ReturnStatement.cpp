@@ -7,3 +7,7 @@ ReturnStatement::ReturnStatement(Expression * ret)
 ReturnStatement::~ReturnStatement() {
   delete returned_;
 }
+
+void ReturnStatement::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

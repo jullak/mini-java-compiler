@@ -8,7 +8,8 @@ public:
   StarExpression(Expression * l, Expression * r);
   ~StarExpression();
 
-private:
+  void accept(Visitor * visitor) override;
+
   Expression * left_;
   Expression * right_;
 };

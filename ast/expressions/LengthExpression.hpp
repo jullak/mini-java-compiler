@@ -5,9 +5,10 @@
 
 class LengthExpression : public Expression {
 public:
-  LengthExpression(Expression * l);
+  explicit LengthExpression(Expression * l);
   ~LengthExpression() override;
 
-private:
+  void accept(Visitor * visitor) override;
+
   Expression * left_;
 };

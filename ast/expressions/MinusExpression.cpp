@@ -9,3 +9,7 @@ MinusExpression::~MinusExpression() {
   delete left_;
   delete right_;
 }
+
+void MinusExpression::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

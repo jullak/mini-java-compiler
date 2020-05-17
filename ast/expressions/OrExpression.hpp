@@ -8,7 +8,8 @@ public:
   OrExpression(Expression * l, Expression * r);
   ~OrExpression() override;
 
-private:
+  void accept(Visitor * visitor) override;
+
   Expression * left_;
   Expression * right_;
 };

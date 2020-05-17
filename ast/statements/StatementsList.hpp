@@ -2,14 +2,16 @@
 
 #include <vector>
 
+#include "ASTElement.hpp"
 #include "Statement.hpp"
 
-class StatementsList {
+class StatementsList : public ASTElement {
 public:
   StatementsList();
   ~StatementsList();
 
   void add_statement(Statement * statement);
-private:
+  void accept(Visitor * visitor) override;
+
   std::vector<Statement *> statements_;
 };

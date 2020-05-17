@@ -6,8 +6,10 @@
 
 class AssertStatement : public Statement {
 public:
-  AssertStatement(Expression * checked);
+  explicit AssertStatement(Expression * checked);
   ~AssertStatement();
-private:
+
+  void accept(Visitor * visitor) override;
+
   Expression * checked_;
 };

@@ -6,9 +6,10 @@
 
 class DeclarationStatement : public Statement {
 public:
-  DeclarationStatement(Declaration * decl);
+  explicit DeclarationStatement(Declaration * decl);
   ~DeclarationStatement() override;
 
-private:
+  void accept(Visitor * visitor) override;
+
   Declaration * declaration_;
 };

@@ -8,7 +8,8 @@ public:
   AndExpression(Expression * l, Expression * r);
   ~AndExpression() override;
 
-private:
+  void accept(Visitor * visitor) override;
+
   Expression * left_;
   Expression * right_;
 };

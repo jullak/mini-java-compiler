@@ -10,7 +10,9 @@ class ElementLvalue : public Lvalue {
 public:
   ElementLvalue(const std::string & ident, Expression * expression);
   ~ElementLvalue();
-private:
+
+  void accept(Visitor * visitor) override;
+
   std::string identifier_;
   Expression * expression_;
 };

@@ -8,3 +8,7 @@ Declaration::Declaration(Type * type, const std::string & ident)
 Declaration::~Declaration() {
   delete type_;
 }
+
+void Declaration::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

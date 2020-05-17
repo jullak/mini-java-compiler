@@ -8,7 +8,8 @@ public:
   ArrayExpression(Expression * l, Expression * i);
   ~ArrayExpression() override;
 
-private:
+  void accept(Visitor * visitor) override;
+
   Expression * left_;
   Expression * index_;
 };

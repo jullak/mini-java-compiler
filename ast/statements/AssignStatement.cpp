@@ -9,3 +9,7 @@ AssignStatement::~AssignStatement() {
   delete lvalue_;
   delete rvalue_;
 }
+
+void AssignStatement::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

@@ -6,8 +6,10 @@
 
 class OutputStatement : public Statement {
 public:
-  OutputStatement(Expression * information);
+  explicit OutputStatement(Expression * information);
   ~OutputStatement();
-private:
+
+  void accept(Visitor * visitor) override;
+
   Expression * information_;
 };

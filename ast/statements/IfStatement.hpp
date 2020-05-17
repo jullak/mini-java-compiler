@@ -8,7 +8,9 @@ class IfStatement : public Statement {
 public:
   IfStatement(Expression * cond, Statement * statement);
   ~IfStatement();
-private:
+
+  void accept(Visitor * visitor) override;
+
   Expression * condition_;
   Statement * statement_;
 };

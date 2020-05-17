@@ -8,3 +8,7 @@ ElementLvalue::ElementLvalue(const std::string & ident, Expression * expression)
 ElementLvalue::~ElementLvalue() {
   delete expression_;
 }
+
+void ElementLvalue::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

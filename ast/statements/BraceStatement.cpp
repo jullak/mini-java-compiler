@@ -7,3 +7,7 @@ BraceStatement::BraceStatement(StatementsList * statements)
 BraceStatement::~BraceStatement() {
   delete statements_;
 }
+
+void BraceStatement::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

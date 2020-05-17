@@ -9,3 +9,7 @@ ProcExpression::~ProcExpression() {
   delete left_;
   delete right_;
 }
+
+void ProcExpression::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

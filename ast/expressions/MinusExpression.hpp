@@ -8,7 +8,8 @@ public:
   MinusExpression(Expression * l, Expression * r);
   ~MinusExpression() override;
 
-private:
+  void accept(Visitor * visitor) override;
+
   Expression * left_;
   Expression * right_;
 };

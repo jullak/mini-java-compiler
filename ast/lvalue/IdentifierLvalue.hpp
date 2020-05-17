@@ -7,7 +7,9 @@
 
 class IdentifierLvalue : public Lvalue {
 public:
-  IdentifierLvalue(const std::string & ident);
-private:
+  explicit IdentifierLvalue(const std::string & ident);
+
+  void accept(Visitor * visitor) override;
+
   std::string identifier_;
 };

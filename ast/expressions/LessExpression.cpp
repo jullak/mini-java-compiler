@@ -9,3 +9,7 @@ LessExpression::~LessExpression() {
   delete left_;
   delete right_;
 }
+
+void LessExpression::accept(Visitor *visitor) {
+  visitor->visit(this);
+}

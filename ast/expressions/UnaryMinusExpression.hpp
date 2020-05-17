@@ -5,9 +5,10 @@
 
 class UnaryMinusExpression : public Expression {
 public:
-  UnaryMinusExpression(Expression * expr);
+  explicit UnaryMinusExpression(Expression * expr);
   ~UnaryMinusExpression() override;
 
-private:
+  void accept(Visitor * visitor) override;
+
   Expression * expression_;
 };

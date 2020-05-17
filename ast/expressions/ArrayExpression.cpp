@@ -9,3 +9,7 @@ ArrayExpression::~ArrayExpression() {
   delete left_;
   delete index_;
 }
+
+void ArrayExpression::accept(Visitor *visitor) {
+  visitor->visit(this);
+}
