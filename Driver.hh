@@ -19,6 +19,8 @@ public:
 
   void set_program(Program * program);
   void print_ast_tree();
+  void build_scope();
+  void check_type();
 private:
   Scanner scanner_;
   yy::parser parser_;

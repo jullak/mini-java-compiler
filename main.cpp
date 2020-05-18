@@ -11,6 +11,8 @@ int main(int argc, char ** argv) {
     else if (argv[i] == "-s") {}
     else if (!driver.parse(argv[i])) {
       driver.print_ast_tree();
+      driver.build_scope();
+      driver.check_type();
       std::cout << "OK?.." << std::endl;
     } else {
       result = 1;

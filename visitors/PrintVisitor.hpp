@@ -8,7 +8,7 @@
 class PrintVisitor : public Visitor {
 public:
   explicit PrintVisitor(const std::string & ast_file);
-  ~PrintVisitor();
+  ~PrintVisitor() override;
 
   void visit(PlusExpression * expression) override;
   void visit(MinusExpression * expression) override;

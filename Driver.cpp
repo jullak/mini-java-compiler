@@ -1,6 +1,8 @@
 #include "Driver.hh"
 #include "parser.hh"
 #include "PrintVisitor.hpp"
+#include "TypeValidatorVisitor.hpp"
+#include "ScopeBuilderVisitor.hpp"
 
 Driver::Driver()
   : scanner_(*this)
@@ -36,5 +38,18 @@ void Driver::set_program(Program * program) {
 
 void Driver::print_ast_tree() {
   PrintVisitor printer("tree.txt");
+
   program_->visit_all(&printer);
+}
+
+void Driver::build_scope() {
+  ScopeBuilderVisitor scope_builder(program_->get_scopes());
+
+  program_->visit_all(&scope_builder);
+}
+
+void Driver::check_type() {
+  TypeValidatorVisitor type_validator(program_->get_scopes());
+
+  program_->visit_all(&type_validator);
 }

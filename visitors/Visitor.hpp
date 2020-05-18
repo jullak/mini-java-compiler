@@ -4,6 +4,8 @@
 
 class Visitor {
 public:
+  virtual ~Visitor() {}
+
   virtual void visit(PlusExpression * expression) = 0;
   virtual void visit(MinusExpression * expression) = 0;
   virtual void visit(StarExpression * expression) = 0;

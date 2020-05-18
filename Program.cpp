@@ -11,3 +11,7 @@ Program::~Program() {
 void Program::visit_all(Visitor *visitor) {
   visitor->visit(statements_);
 }
+
+ScopeLayer * Program::get_scopes() {
+  return &root_;
+}

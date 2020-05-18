@@ -4,9 +4,9 @@
 #include "ScopeBuilderVisitor.hpp"
 
 
-ScopeBuilderVisitor::ScopeBuilderVisitor()
-  : root_(nullptr)
-  , current_layer_(&root_)
+ScopeBuilderVisitor::ScopeBuilderVisitor(ScopeLayer * root)
+  : root_(root)
+  , current_layer_(root)
 {
   current_child_number_.push(0);
 }
@@ -94,37 +94,18 @@ void ScopeBuilderVisitor::visit(StatementsList * statement) {
 void ScopeBuilderVisitor::visit(IfStatement * statement) {
   statement->condition_->accept(this);
 
-  increase_current_child_();
-  current_layer_->add_child_layer();
-
-  current_layer_ = current_layer_->switch_to_child(current_child_number_.top() - 1);
   statement->statement_->accept(this);
-  current_layer_ = current_layer_->switch_to_parent();
 }
 void ScopeBuilderVisitor::visit(IfElseStatement * statement) {
   statement->condition_->accept(this);
 
-  increase_current_child_();
-  current_layer_->add_child_layer();
-  current_layer_ = current_layer_->switch_to_child(current_child_number_.top() - 1);
   statement->statementIf_->accept(this);
-  current_layer_ = current_layer_->switch_to_parent();
-
-  increase_current_child_();
-  current_layer_->add_child_layer();
-  current_layer_ = current_layer_->switch_to_child(current_child_number_.top() - 1);
   statement->statementElse_->accept(this);
-  current_layer_ = current_layer_->switch_to_parent();
 }
 void ScopeBuilderVisitor::visit(WhileStatement * statement) {
   statement->condition_->accept(this);
 
-  increase_current_child_();
-
-  current_layer_->add_child_layer();
-  current_layer_ = current_layer_->switch_to_child(current_child_number_.top() - 1);
   statement->statement_->accept(this);
-  current_layer_ = current_layer_->switch_to_parent();
 }
 void ScopeBuilderVisitor::visit(ReturnStatement * statement) {
   statement->returned_->accept(this);
@@ -136,12 +117,9 @@ void ScopeBuilderVisitor::visit(OutputStatement * statement) {
   statement->information_->accept(this);
 }
 void ScopeBuilderVisitor::visit(BraceStatement * statement) {
-  increase_current_child_();
-  current_layer_->add_child_layer();
-
-  current_layer_ = current_layer_->switch_to_child(current_child_number_.top() - 1);
+  begin_new_scope_();
   statement->statements_->accept(this);
-  current_layer_ = current_layer_->switch_to_parent();
+  end_scope_();
 }
 void ScopeBuilderVisitor::visit(AssignStatement * statement) {
   statement->lvalue_->accept(this);
@@ -166,4 +144,18 @@ void ScopeBuilderVisitor::visit(ElementLvalue * lvalue) {
 
 void ScopeBuilderVisitor::visit(Declaration * declaration) {
   current_layer_->declare_variable(declaration->identifier_, declaration->type_->type_);
+}
+
+void ScopeBuilderVisitor::begin_new_scope_() {
+  current_layer_->add_child_layer();
+  begin_scope_();
+}
+void ScopeBuilderVisitor::begin_scope_() {
+  increase_current_child_();
+  current_layer_ = current_layer_->switch_to_child(current_child_number_.top() - 1);
+  current_child_number_.push(0);
+}
+void ScopeBuilderVisitor::end_scope_() {
+  current_layer_ = current_layer_->switch_to_parent();
+  current_child_number_.pop();
 }

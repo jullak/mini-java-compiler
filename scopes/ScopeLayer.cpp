@@ -29,8 +29,8 @@ ScopeLayer * ScopeLayer::switch_to_parent() {
 }
 
 void ScopeLayer::declare_variable(const std::string & name, PrimitiveTypes type) {
-  if (is_declared(name)) {
-    throw std::runtime_error("Double var definition!");
+  if (values_.find(name) != values_.end()) {
+    throw std::runtime_error("Double var declaration!");
   }
 
   values_.insert(std::make_pair(name, nullptr));
@@ -39,7 +39,7 @@ void ScopeLayer::declare_variable(const std::string & name, PrimitiveTypes type)
 
 void ScopeLayer::init_variable(const std::string &name, BaseObject *object) {
   if (!is_declared(name)) {
-    throw std::runtime_error("Initialize var before define!");
+    throw std::runtime_error("Initialize var before declare!");
   }
 
   values_[name] = object;
@@ -55,10 +55,24 @@ BaseObject * ScopeLayer::get_variable(const std::string &name) {
   auto it_and_layer = find_(name);
   if (it_and_layer.second == nullptr
       || (it_and_layer.second != nullptr && it_and_layer.first == it_and_layer.second->values_.end())) {
-    throw std::runtime_error("Use var before define!");
+    throw std::runtime_error("Use var before declare!");
   }
 
   return it_and_layer.first->second;
+}
+
+PrimitiveTypes ScopeLayer::get_variable_type(const std::string &name) {
+  ScopeLayer * current_layer = this;
+
+  while (current_layer->types_.find(name) == current_layer->types_.end() && current_layer->parent_ != nullptr) {
+    current_layer = current_layer->parent_;
+  }
+
+  if (current_layer->types_.find(name) == current_layer->types_.end()) {
+    throw std::runtime_error("Use var before declare!");
+  }
+
+  return current_layer->types_.find(name)->second;
 }
 
 std::pair<std::unordered_map<std::string, BaseObject *>::iterator, ScopeLayer *>

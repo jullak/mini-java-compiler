@@ -9,6 +9,7 @@
 
 class ScopeLayer {
 public:
+  ScopeLayer() = default;
   explicit ScopeLayer(ScopeLayer * parent);
   ~ScopeLayer();
 
@@ -21,6 +22,7 @@ public:
 
   bool is_declared(const std::string & name);
   BaseObject * get_variable(const std::string & name);
+  PrimitiveTypes get_variable_type(const std::string & name);
 private:
   ScopeLayer * parent_;
   std::vector<ScopeLayer *> children_;

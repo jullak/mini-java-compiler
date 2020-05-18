@@ -2,13 +2,13 @@
 
 #include <stack>
 
+#include "TemplateVisitor.hpp"
 #include "ScopeLayer.hpp"
-#include "Visitor.hpp"
 
-class ScopeBuilderVisitor : public Visitor {
+class TypeValidatorVisitor : public TemplateVisitor<PrimitiveTypes> {
 public:
-  explicit ScopeBuilderVisitor(ScopeLayer * root);
-  ~ScopeBuilderVisitor() = default;
+  explicit TypeValidatorVisitor(ScopeLayer * root);
+  ~TypeValidatorVisitor() = default;
 
   void visit(PlusExpression * expression) override;
   void visit(MinusExpression * expression) override;
@@ -44,8 +44,8 @@ public:
   void visit(IdentifierLvalue * lvalue) override;
   void visit(ElementLvalue * lvalue) override;
 
-  void visit(ArrayType * type) override {};
-  void visit(SimpleType * type) override {};
+  void visit(ArrayType * type) override;
+  void visit(SimpleType * type) override;
 
   void visit(Declaration * declaration) override;
 
@@ -55,8 +55,6 @@ private:
 
   std::stack<size_t> current_child_number_;
 
-  void increase_current_child_();
-  void begin_new_scope_();
   void begin_scope_();
   void end_scope_();
 };
