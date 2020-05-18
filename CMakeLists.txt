@@ -34,6 +34,8 @@ add_subdirectory(${mini-java-compiler_SOURCE_DIR}/ast/lvalue)
 add_subdirectory(${mini-java-compiler_SOURCE_DIR}/ast/types)
 add_subdirectory(${mini-java-compiler_SOURCE_DIR}/ast/declaration)
 add_subdirectory(${mini-java-compiler_SOURCE_DIR}/visitors)
+add_subdirectory(${mini-java-compiler_SOURCE_DIR}/type-system)
+add_subdirectory(${mini-java-compiler_SOURCE_DIR}/scopes)
 
 target_include_directories(compiler PUBLIC
         ${mini-java-compiler_SOURCE_DIR}/ast
@@ -42,4 +44,6 @@ target_include_directories(compiler PUBLIC
         ${mini-java-compiler_SOURCE_DIR}/ast/lvalue
         ${mini-java-compiler_SOURCE_DIR}/ast/types
         ${mini-java-compiler_SOURCE_DIR}/ast/declaration
-        ${mini-java-compiler_SOURCE_DIR}/visitors)
+        ${mini-java-compiler_SOURCE_DIR}/visitors
+        ${mini-java-compiler_SOURCE_DIR}/type-system
+        ${mini-java-compiler_SOURCE_DIR}/scopes)

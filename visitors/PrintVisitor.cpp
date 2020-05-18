@@ -265,15 +265,11 @@ void PrintVisitor::visit(ElementLvalue * lvalue) {
 
 void PrintVisitor::visit(ArrayType * type) {
   print_tabs_();
-  ast_stream_ << "type[] - ArrayType is:" << std::endl;
-
-  ++tabs_count_;
-  type->array_type_->accept(this);
-  --tabs_count_;
+  ast_stream_ << "type[] - ArrayType is:" << type->type_ << ", 2 - INT[], 3 - BOOL[]" << std::endl;
 }
 void PrintVisitor::visit(SimpleType * type) {
   print_tabs_();
-  ast_stream_ << "Simple type is:" << type->simple_type_ << ", 0 - INT, 1 - BOOL, 2 - VOID" << std::endl;
+  ast_stream_ << "Simple type is:" << type->type_ << ", 0 - INT, 1 - BOOL" << std::endl;
 }
 
 void PrintVisitor::visit(Declaration * declaration) {
