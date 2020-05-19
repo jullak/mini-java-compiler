@@ -21,3 +21,16 @@ std::vector<int> & BoolArrayObject::get_int_array() {
 std::vector<bool> & BoolArrayObject::get_bool_array() {
   return object_;
 }
+
+bool BoolArrayObject::is_int() {
+  return false;
+}
+bool BoolArrayObject::is_bool() {
+  return false;
+}
+bool BoolArrayObject::is_int_array() {
+  return false;
+}
+bool BoolArrayObject::is_bool_array() {
+  return true;
+}

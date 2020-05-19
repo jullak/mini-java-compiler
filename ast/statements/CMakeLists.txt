@@ -8,5 +8,6 @@ target_sources(compiler
         ${mini-java-compiler_SOURCE_DIR}/ast/statements/OutputStatement.cpp
         ${mini-java-compiler_SOURCE_DIR}/ast/statements/AssertStatement.cpp
         ${mini-java-compiler_SOURCE_DIR}/ast/statements/BraceStatement.cpp
-        ${mini-java-compiler_SOURCE_DIR}/ast/statements/AssignStatement.cpp
-        ${mini-java-compiler_SOURCE_DIR}/ast/statements/DeclarationStatement.cpp)
+        ${mini-java-compiler_SOURCE_DIR}/ast/statements/DeclarationStatement.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/statements/IdentifierAssignStatement.cpp
+        ${mini-java-compiler_SOURCE_DIR}/ast/statements/ArrayAssignStatement.cpp)

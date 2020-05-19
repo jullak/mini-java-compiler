@@ -2,12 +2,13 @@
 
 #include <stack>
 
+#include "TemplateVisitor.hpp"
 #include "ScopeLayer.hpp"
-#include "Visitor.hpp"
 
-class InterpretVisitor : public Visitor {
+class InterpretVisitor : public TemplateVisitor<std::shared_ptr<BaseObject>> {
 public:
-  InterpretVisitor() = default;
+  explicit InterpretVisitor(ScopeLayer * root);
+  ~InterpretVisitor() = default;
 
   void visit(PlusExpression * expression) override;
   void visit(MinusExpression * expression) override;
@@ -37,20 +38,24 @@ public:
   void visit(AssertStatement * statement) override;
   void visit(OutputStatement * statement) override;
   void visit(BraceStatement * statement) override;
-  void visit(AssignStatement * statement) override;
   void visit(DeclarationStatement * statement) override;
 
-  void visit(IdentifierLvalue * lvalue) override;
-  void visit(ElementLvalue * lvalue) override;
+  void visit(IdentifierAssignStatement * statement) override;
+  void visit(ArrayAssignStatement * statement) override;
 
   void visit(ArrayType * type) override;
   void visit(SimpleType * type) override;
 
   void visit(Declaration * declaration) override;
-
 private:
-  ScopeLayer root_;
-  std::stack<size_t> child_scope_layer_number_;
+  ScopeLayer * root_;
+  ScopeLayer * current_layer_;
 
+  std::stack<size_t> current_child_number_;
+
+  void begin_scope_();
+  void end_scope_();
+  void increase_current_child_();
+  void decrease_current_child_();
 };
 

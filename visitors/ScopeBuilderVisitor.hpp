@@ -38,11 +38,10 @@ public:
   void visit(AssertStatement * statement) override;
   void visit(OutputStatement * statement) override;
   void visit(BraceStatement * statement) override;
-  void visit(AssignStatement * statement) override;
   void visit(DeclarationStatement * statement) override;
 
-  void visit(IdentifierLvalue * lvalue) override;
-  void visit(ElementLvalue * lvalue) override;
+  void visit(IdentifierAssignStatement * statement) override;
+  void visit(ArrayAssignStatement * statement) override;
 
   void visit(ArrayType * type) override {};
   void visit(SimpleType * type) override {};

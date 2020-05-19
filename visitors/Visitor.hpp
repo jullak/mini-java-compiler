@@ -34,11 +34,10 @@ public:
   virtual void visit(AssertStatement * statement) = 0;
   virtual void visit(OutputStatement * statement) = 0;
   virtual void visit(BraceStatement * statement) = 0;
-  virtual void visit(AssignStatement * statement) = 0;
   virtual void visit(DeclarationStatement * statement) = 0;
 
-  virtual void visit(IdentifierLvalue * lvalue) = 0;
-  virtual void visit(ElementLvalue * lvalue) = 0;
+  virtual void visit(IdentifierAssignStatement * statement) = 0;
+  virtual void visit(ArrayAssignStatement * statement) = 0;
 
   virtual void visit(ArrayType * type) = 0;
   virtual void visit(SimpleType * type) = 0;

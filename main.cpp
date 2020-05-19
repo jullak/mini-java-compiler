@@ -13,6 +13,7 @@ int main(int argc, char ** argv) {
       driver.print_ast_tree();
       driver.build_scope();
       driver.check_type();
+      driver.interpret();
       std::cout << "OK?.." << std::endl;
     } else {
       result = 1;

@@ -174,26 +174,28 @@ void TypeValidatorVisitor::visit(BraceStatement * statement) {
   accept(statement->statements_);
   end_scope_();
 }
-void TypeValidatorVisitor::visit(AssignStatement * statement) {
-  if (accept(statement->lvalue_) != accept(statement->rvalue_)) {
-    throw std::runtime_error("Incompatible types in AssignStatement");
-  }
-}
+
 void TypeValidatorVisitor::visit(DeclarationStatement * statement) {
   accept(statement->declaration_);
 }
 
-void TypeValidatorVisitor::visit(IdentifierLvalue * lvalue) {
-  tos_value_ = current_layer_->get_variable_type(lvalue->identifier_);
+void TypeValidatorVisitor::visit(IdentifierAssignStatement * statement) {
+  if (current_layer_->get_variable_type(statement->identifier_) != accept(statement->rvalue_)) {
+    throw std::runtime_error("Incompatible types in IdentifierAssignStatement");
+  }
 }
-void TypeValidatorVisitor::visit(ElementLvalue * lvalue) {
-  if (accept(lvalue->expression_) != INT) {
-    throw std::runtime_error("Incompatible types, expected: int; [expr] in ElementLvalue");
+void TypeValidatorVisitor::visit(ArrayAssignStatement * statement) {
+  if (accept(statement->expression_) != INT) {
+    throw std::runtime_error("Incompatible types, expected: int; [expr] in ArrayAssignStatement");
   }
 
-  tos_value_ = current_layer_->get_variable_type(lvalue->identifier_);
-  if (tos_value_ == INT_ARRAY) tos_value_ = INT;
-  if (tos_value_ == BOOL_ARRAY) tos_value_ = BOOL;
+  auto array_type = current_layer_->get_variable_type(statement->identifier_);
+  auto rv_type = accept(statement->rvalue_);
+  if (array_type == INT_ARRAY && rv_type != INT) {
+    throw std::runtime_error("Incompatible types, expected: int; rvalue in ArrayAssignStatement");
+  } else if (array_type == BOOL_ARRAY && rv_type != BOOL) {
+    throw std::runtime_error("Incompatible types, expected: bool; rvalue in ArrayAssignStatement");
+  }
 }
 
 void TypeValidatorVisitor::visit(ArrayType * type) {

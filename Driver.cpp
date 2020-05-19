@@ -1,4 +1,5 @@
 #include "Driver.hh"
+#include "InterpretVisitor.hpp"
 #include "parser.hh"
 #include "PrintVisitor.hpp"
 #include "TypeValidatorVisitor.hpp"
@@ -37,7 +38,7 @@ void Driver::set_program(Program * program) {
 }
 
 void Driver::print_ast_tree() {
-  PrintVisitor printer("tree.txt");
+  PrintVisitor printer(file_name_ + ".txt");
 
   program_->visit_all(&printer);
 }
@@ -52,4 +53,10 @@ void Driver::check_type() {
   TypeValidatorVisitor type_validator(program_->get_scopes());
 
   program_->visit_all(&type_validator);
+}
+
+void Driver::interpret() {
+  InterpretVisitor interpret(program_->get_scopes());
+
+  program_->visit_all(&interpret);
 }

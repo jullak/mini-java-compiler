@@ -7,3 +7,4 @@ T TemplateVisitor<T>::accept(ASTElement * element) {
 }
 
 template PrimitiveTypes TemplateVisitor<PrimitiveTypes>::accept(ASTElement *element);
+template std::shared_ptr<BaseObject> TemplateVisitor<std::shared_ptr<BaseObject>>::accept(ASTElement *element);

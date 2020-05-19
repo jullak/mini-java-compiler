@@ -232,15 +232,6 @@ void PrintVisitor::visit(BraceStatement * statement) {
   statement->statements_->accept(this);
   --tabs_count_;
 }
-void PrintVisitor::visit(AssignStatement * statement) {
-  print_tabs_();
-  ast_stream_ << "= - AssignStatement is:" << std::endl;
-
-  ++tabs_count_;
-  statement->lvalue_->accept(this);
-  statement->rvalue_->accept(this);
-  --tabs_count_;
-}
 void PrintVisitor::visit(DeclarationStatement * statement) {
   print_tabs_();
   ast_stream_ << "DeclarationStatement is:" << std::endl;
@@ -250,17 +241,18 @@ void PrintVisitor::visit(DeclarationStatement * statement) {
   --tabs_count_;
 }
 
-void PrintVisitor::visit(IdentifierLvalue * lvalue) {
+void PrintVisitor::visit(IdentifierAssignStatement * statement) {
   print_tabs_();
-  ast_stream_ << "IdentifierLvalue is: " << lvalue->identifier_ << std::endl;
-}
-void PrintVisitor::visit(ElementLvalue * lvalue) {
-  print_tabs_();
-  ast_stream_ << "ElementLvalue is: " << lvalue->identifier_ << "[] and" << std::endl;
+  ast_stream_ << "= - IdentifierAssignStatement is: " << statement->identifier_ << std::endl;
 
-  ++tabs_count_;
-  lvalue->expression_->accept(this);
-  --tabs_count_;
+  statement->rvalue_->accept(this);
+}
+void PrintVisitor::visit(ArrayAssignStatement * statement) {
+  print_tabs_();
+  ast_stream_ << "[]= - ArrayAssignStatement is: " << statement->identifier_ << "[]" <<std::endl;
+
+  statement->expression_->accept(this);
+  statement->rvalue_->accept(this);
 }
 
 void PrintVisitor::visit(ArrayType * type) {

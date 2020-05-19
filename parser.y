@@ -82,7 +82,6 @@
 %nterm <Expression*> expr
 %nterm <Statement*> statement
 %nterm <StatementsList*> statements
-%nterm <Lvalue*> lvalue
 %nterm <ArrayType*> array_type
 %nterm <SimpleType*> simple_type
 %nterm <Type*> type
@@ -113,10 +112,6 @@ var_declaration: type "identifier" {$$ = new Declaration($1, $2);} ;
 
 local_var_declaration: var_declaration {$$ = $1;} ;
 
-lvalue:
-    "identifier" {$$ = new IdentifierLvalue($1);} |
-    "identifier" "[" expr "]" {$$ = new ElementLvalue($1, $3);} ;
-
 statement:
     "assert" "(" expr ")" {$$ = new AssertStatement($3);} |
     local_var_declaration ";" {$$ = new DeclarationStatement($1);} |
@@ -125,7 +120,8 @@ statement:
     "if" "(" expr ")" statement "else" statement {$$ = new IfElseStatement($3, $5, $7);} |
     "while" "(" expr ")" statement {$$ = new WhileStatement($3, $5);} |
     COUT "(" expr ")" ";" {$$ = new OutputStatement($3);} |
-    lvalue "=" expr ";" {$$ = new AssignStatement($1, $3);} |
+    "identifier" "=" expr ";" {$$ = new IdentifierAssignStatement($1, $3);} |
+    "identifier" "[" expr "]" "=" expr ";" {$$ = new ArrayAssignStatement($1, $3, $6);} |
     "return" expr ";" {$$ = new ReturnStatement($2);} ;
 
 statements:

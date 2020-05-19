@@ -21,6 +21,7 @@ public:
   void print_ast_tree();
   void build_scope();
   void check_type();
+  void interpret();
 private:
   Scanner scanner_;
   yy::parser parser_;

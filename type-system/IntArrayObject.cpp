@@ -21,3 +21,16 @@ std::vector<int> & IntArrayObject::get_int_array() {
 std::vector<bool> & IntArrayObject::get_bool_array() {
   throw std::runtime_error("Try to get bool array via int array");
 }
+
+bool IntArrayObject::is_int() {
+  return false;
+}
+bool IntArrayObject::is_bool() {
+  return false;
+}
+bool IntArrayObject::is_int_array() {
+  return true;
+}
+bool IntArrayObject::is_bool_array() {
+  return false;
+}

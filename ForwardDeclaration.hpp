@@ -34,12 +34,10 @@ class ReturnStatement;
 class AssertStatement;
 class OutputStatement;
 class BraceStatement;
-class AssignStatement;
 class DeclarationStatement;
 
-class Lvalue;
-class IdentifierLvalue;
-class ElementLvalue;
+class IdentifierAssignStatement;
+class ArrayAssignStatement;
 
 class Type;
 class ArrayType;

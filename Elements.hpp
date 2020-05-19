@@ -34,12 +34,10 @@
 #include "AssertStatement.hpp"
 #include "OutputStatement.hpp"
 #include "BraceStatement.hpp"
-#include "AssignStatement.hpp"
 #include "DeclarationStatement.hpp"
 
-#include "Lvalue.hpp"
-#include "IdentifierLvalue.hpp"
-#include "ElementLvalue.hpp"
+#include "IdentifierAssignStatement.hpp"
+#include "ArrayAssignStatement.hpp"
 
 #include "Type.hpp"
 #include "ArrayType.hpp"

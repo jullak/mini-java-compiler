@@ -121,25 +121,23 @@ void ScopeBuilderVisitor::visit(BraceStatement * statement) {
   statement->statements_->accept(this);
   end_scope_();
 }
-void ScopeBuilderVisitor::visit(AssignStatement * statement) {
-  statement->lvalue_->accept(this);
-  statement->rvalue_->accept(this);
-}
 void ScopeBuilderVisitor::visit(DeclarationStatement * statement) {
   statement->declaration_->accept(this);
 }
 
-void ScopeBuilderVisitor::visit(IdentifierLvalue * lvalue) {
-  if (!current_layer_->is_declared(lvalue->identifier_)) {
+void ScopeBuilderVisitor::visit(IdentifierAssignStatement * statement) {
+  if (!current_layer_->is_declared(statement->identifier_)) {
     throw std::runtime_error("Use var before definition!");
   }
+  statement->rvalue_->accept(this);
 }
-void ScopeBuilderVisitor::visit(ElementLvalue * lvalue) {
-  if (!current_layer_->is_declared(lvalue->identifier_)) {
+void ScopeBuilderVisitor::visit(ArrayAssignStatement * statement) {
+  if (!current_layer_->is_declared(statement->identifier_)) {
     throw std::runtime_error("Use var before definition!");
   }
 
-  lvalue->expression_->accept(this);
+  statement->expression_->accept(this);
+  statement->rvalue_->accept(this);
 }
 
 void ScopeBuilderVisitor::visit(Declaration * declaration) {
