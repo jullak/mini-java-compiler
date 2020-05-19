@@ -113,16 +113,18 @@ void InterpretVisitor::visit(IfElseStatement * statement) {
 
   if (condition) {
     accept(statement->statementIf_);
+    increase_current_child_();
   } else {
     increase_current_child_();
     accept(statement->statementElse_);
-    decrease_current_child_();
   }
 }
 void InterpretVisitor::visit(WhileStatement * statement) {
   while (accept(statement->condition_)->get_bool()) {
     accept(statement->statement_);
+    decrease_current_child_();
   }
+  increase_current_child_();
 }
 void InterpretVisitor::visit(ReturnStatement * statement) { }
 void InterpretVisitor::visit(AssertStatement * statement) {
@@ -169,15 +171,14 @@ void InterpretVisitor::visit(Declaration * declaration) {}
 
 void InterpretVisitor::begin_scope_() {
   current_layer_ = current_layer_->switch_to_child(current_child_number_.top());
-
-  increase_current_child_();
-
   current_child_number_.push(0);
 }
 
 void InterpretVisitor::end_scope_() {
   current_layer_ = current_layer_->switch_to_parent();
   current_child_number_.pop();
+
+  increase_current_child_();
 }
 
 void InterpretVisitor::increase_current_child_() {

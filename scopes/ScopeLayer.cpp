@@ -52,6 +52,8 @@ std::shared_ptr<BaseObject> ScopeLayer::get_variable(const std::string &name) {
   if (it_and_layer.second == nullptr
       || (it_and_layer.second != nullptr && it_and_layer.first == it_and_layer.second->values_.end())) {
     throw std::runtime_error("Use var before declare!");
+  } else if (it_and_layer.first->second == nullptr) {
+    throw std::runtime_error("Use var before init!");
   }
 
   return it_and_layer.first->second;

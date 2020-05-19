@@ -14,7 +14,6 @@ int main(int argc, char ** argv) {
       driver.build_scope();
       driver.check_type();
       driver.interpret();
-      std::cout << "OK?.." << std::endl;
     } else {
       result = 1;
     }
